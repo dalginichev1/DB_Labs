@@ -11,8 +11,8 @@ CREATE TABLE products(
     product_id BIGINT PRIMARY KEY,
     product_name VARCHAR(255) NOT NULL,
     product_description VARCHAR(4096),
-    price INTEGER NOT NULL CHECK (price >= 0),
-    stock INTEGER CHECK (stock >= 0)
+    price NUMERIC(12, 2) NOT NULL CHECK (price >= 0),
+    stock INTEGER CHECK (stock >= 0) NOT NULL 
 );
 
 CREATE TABLE categories (
@@ -21,21 +21,21 @@ CREATE TABLE categories (
     category_description VARCHAR(4096)
 );
 
-CREATE TABLE deliveries (
-    delivery_id BIGINT PRIMARY KEY,
-    delivery_date TIMESTAMP NOT NULL,
-    delivery_cost NUMERIC(8, 2) NOT NULL,
-    delivery_status VARCHAR(63) NOT NULL
-);
-
 CREATE TABLE orders(
     order_id BIGINT PRIMARY KEY,
     creation_date TIMESTAMP NOT NULL,
     order_status VARCHAR(255) NOT NULL,
     customer_id BIGINT NOT NULL,
-    delivery_id BIGINT NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE,
-    FOREIGN KEY (delivery_id) REFERENCES deliveries(delivery_id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
+);
+
+CREATE TABLE deliveries (
+    delivery_id BIGINT PRIMARY KEY,
+    delivery_date TIMESTAMP,
+    delivery_cost NUMERIC(8, 2) NOT NULL,
+    delivery_status VARCHAR(63) NOT NULL,
+    order_id BIGINT NOT NULL,
+    FOREIGN KEY(order_id) REFERENCES orders(order_id) ON DELETE RESTRICT
 );
 
 CREATE TABLE reviews (
