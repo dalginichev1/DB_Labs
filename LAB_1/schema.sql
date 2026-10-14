@@ -4,7 +4,7 @@ CREATE TABLE customers(
     last_name VARCHAR(255) NOT NULL,
     middle_name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
-    phone_number VARCHAR(16) UNIQUE CHECK (LENGTH(phone_number) >= 4)
+    phone_number VARCHAR(16) UNIQUE CHECK (LENGTH(phone_number) >= 4) NOT NULL
 );
 
 CREATE TABLE products(
@@ -43,8 +43,8 @@ CREATE TABLE reviews (
     rating SMALLINT CHECK (
         rating BETWEEN 1
         AND 5
-    ),
-    creation_at TIMESTAMP DEFAULT NOW(),
+    ) NOT NULL,
+    creation_at TIMESTAMP DEFAULT NOW() NOT NULL,
     review_text VARCHAR(4096) CHECK (LENGTH(review_text) > 0),
     customer_id BIGINT NOT NULL,
     product_id BIGINT NOT NULL,
