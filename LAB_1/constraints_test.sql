@@ -1,64 +1,57 @@
 INSERT INTO
-    customers (
+    customers(
         customer_id,
         first_name,
         last_name,
-        email
+        middle_name,
+        email,
+        phone_number
     )
-VALUES
-    (
-        1,
-        'Test',
-        'Test',
-        'test1@mail.ru'
-    );
+VALUES (
+    4,
+    'Иван',
+    'Антонович',
+    'Антонов',
+    'ivan@example.com',
+    '+79991112233'
+);
 
-INSERT INTO
-    customers (
-        customer_id,
-        first_name,
-        last_name,
-        email
-    )
-VALUES
-    (
-        100,
-        'Test',
-        'Test',
-        'user1@mail.ru'
-    );
+UPDATE products
+SET stock = -1
+WHERE product_id = 2;
 
-INSERT INTO
-    customers (
-        customer_id,
-        first_name,
-        last_name,
-        email
-    )
-VALUES
-    (
-        101,
-        'Test',
-        NULL,
-        'test101@mail.ru'
-    );
+UPDATE customers
+SET phone_number = '+79'
+WHERE customer_id = 3;
 
-INSERT INTO
-    products (
-        product_id,
-        product_name,
-        price,
-        stock
-    )
-VALUES
-    (100, 'Test product', -100, 10);
+INSERT INTO orders (
+    order_id,
+    creation_date,
+    order_status,
+    customer_id
+)
+VALUES (
+    12,
+    '2026-10-14 13:50:00',
+    'Ожидает оплаты',
+    100
+);
 
-INSERT INTO
-    orderItem (order_id, product_id, quantity)
-VALUES
-    (9999, 1, 1);
+UPDATE reviews
+SET rating = 6
+WHERE review_id = 1;
 
-INSERT INTO
-    orderItem (order_id, product_id, quantity)
-VALUES
-    (1, 1, 0);
+INSERT INTO deliveries (
+    delivery_id,
+    delivery_date,
+    delivery_cost,
+    delivery_status,
+    order_id
+)
+VALUES (
+    5,
+    '2026-10-5 10:32:36',
+    1250.45,
+    'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa',
+    2
+);

@@ -17,7 +17,7 @@ CREATE TABLE products(
 
 CREATE TABLE categories (
     category_id BIGINT PRIMARY KEY,
-    category_name VARCHAR(255),
+    category_name VARCHAR(255) NOT NULL,
     category_description VARCHAR(4096)
 );
 
@@ -26,7 +26,7 @@ CREATE TABLE orders(
     creation_date TIMESTAMP NOT NULL,
     order_status VARCHAR(255) NOT NULL,
     customer_id BIGINT NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE CASCADE
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE RESTRICT
 );
 
 CREATE TABLE deliveries (
@@ -66,7 +66,7 @@ CREATE TABLE orderItem (
     quantity INTEGER NOT NULL CHECK (quantity > 0),
     PRIMARY KEY (order_id, product_id),
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
-    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE CASCADE
+    FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE RESTRICT
 );
 
 CREATE TABLE payments (
@@ -74,6 +74,6 @@ CREATE TABLE payments (
     method VARCHAR(255) NOT NULL,
     amount NUMERIC(15, 2) NOT NULL CHECK (amount > 0),
     payment_status VARCHAR(63) NOT NULL,
-    order_id BIGINT UNIQUE NOT NULL,
+    order_id BIGINT NOT NULL,
     FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE
 );

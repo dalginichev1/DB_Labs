@@ -65,33 +65,36 @@ VALUES
     (3, 'Мониторы', 'Мониторы и дисплеи');
 
 INSERT INTO
-    deliveries (
-        delivery_id,
-        delivery_date,
-        delivery_cost,
-        delivery_status
-    )
-VALUES
-    (1, '2026-09-30 12:00:00', 500.00, 'Доставляется'),
-    (
-        2,
-        '2026-10-01 15:00:00',
-        700.00,
-        'Ожидает отправки'
-    );
-
-INSERT INTO
     orders (
         order_id,
         creation_date,
         order_status,
-        customer_id,
-        delivery_id
+        customer_id
     )
 VALUES
-    (1, '2026-09-29 10:00:00', 'Создан', 1, 1),
-    (2, '2026-09-29 11:30:00', 'Оплачен', 2, 1),
-    (3, '2026-09-29 14:00:00', 'Создан', 3, 2);
+    (1, '2026-09-29 10:00:00', 'Создан', 1),
+    (2, '2026-09-29 11:30:00', 'Оплачен', 2),
+    (3, '2026-09-29 14:00:00', 'Создан', 3);
+
+INSERT INTO
+    deliveries (
+        delivery_id,
+        delivery_date,
+        delivery_cost,
+        delivery_status,
+        order_id
+    )
+VALUES
+    (1, '2026-09-30 12:00:00', 500.00, 'Доставляется', 1),
+    (
+        2,
+        '2026-10-01 15:00:00',
+        700.00,
+        'Ожидает отправки',
+        2
+    ),
+    (
+        3, '2026-10-04 12:32:15', 400.00, 'Доставлено', 3);
 
 INSERT INTO
     reviews (
