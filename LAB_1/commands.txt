@@ -1,0 +1,10 @@
+sudo service postgresql start - запуск postgres 
+sudo service postgresql status - проверка статуса postgres
+sudo service postgresql stop - остановка postgres 
+sudo service postgresql restart - перезагрузка postgres
+
+sudo -u postgres psql - зайти в postgres как суперпользователь
+
+
+
+sudo -u postgres psql -d online_shop -f file_name.sql - команда для запуска sql файла
